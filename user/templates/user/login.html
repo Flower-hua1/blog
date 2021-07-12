@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+    我的网站|登录
+{% endblock %}
+
+{% block nav_bolg_active%}
+    active
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-4 col-xs-offset-4">
+            {% if not user.is_authenticated %}
+                {#判断如果注册后直接跳转到首页不需要再登录一次#}
+                <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">登录</h3>
+                </div>
+                <div class="panel-body">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                            {% for field in login_form  %}
+                                <label for="{{ field.id_for_label }}">{{ field.label }}</label>{#对label去冒号操作#}
+                                {{ field }}
+                                <p class="text-danger">{{ field.errors.as_text }}</p>{#django生成的错误信息#}
+                            {% endfor %}
+                        <span class="text-danger">{{ login_form.non_field_errors }}</span>  {#django生成的错误信息(用户名或者密码错误)#}
+                    <div class="clearfix"></div>
+                        <a href="{% url 'forgot_password' %}" class="pull-left">忘记密码</a>
+                        <input type="submit" value="登录" class="btn btn-primary pull-right">
+                    </form>
+                </div>
+            </div>
+            {% else %}
+                已登录,跳转到首页
+                <a class='btn btn-primary' href="{% url "login" %}?from={{ request.get_full_path }}">登录</a>{#询问当前链接并且返回给后端#}
+                <span> or </span>
+                <a class="btn btn-danger" href="{% url "register" %}?from={{ request.get_full_path }}">注册</a>{#询问当前链接并且返回给后端#}
+            {% endif %}
+        </div>
+
+    </div>
+
+{% endblock %}
+
