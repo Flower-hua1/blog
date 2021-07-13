@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ["*"]
 
 # https://docs.djangoproject.com/zh-hans/3.2/ref/settings/
 # mysql配置
+# DATABASES_PASSWORD = "lxl123456"
 DATABASES_PASSWORD = os.environ["DATABASES_PASSWORD"]
 DATABASES = {
     'default': {
@@ -47,6 +48,7 @@ DATABASES = {
 # 发送邮件设置
 # https://docs.djangoproject.com/en/2.0/ref/settings/#email
 # https://docs.djangoproject.com/en/2.0/topics/email/
+# EMAIL_HOST_PASSWORD = 'aaqjhlfhackuddch'
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # 默认使用的邮箱配置
 EMAIL_HOST = 'smtp.qq.com'   # qq邮箱是通过这个域名发送
