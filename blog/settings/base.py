@@ -116,6 +116,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_collected')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
@@ -190,13 +191,13 @@ CACHES = {
 }
 
 
-# 发送邮件设置
-# https://docs.djangoproject.com/en/2.0/ref/settings/#email
-# https://docs.djangoproject.com/en/2.0/topics/email/
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # 默认使用的邮箱配置
-EMAIL_HOST = 'smtp.qq.com'   # qq邮箱是通过这个域名发送
-EMAIL_PORT = 25    # 发送邮箱端口
-EMAIL_HOST_USER = '2972352405@qq.com'   # 邮箱地址
-EMAIL_HOST_PASSWORD = 'aaqjhlfhackuddch'  # 授权码
-EMAIL_SUBJECT_PREFIX = '[李小龙的博客] '
-EMAIL_USE_TLS = True  # 与SMTP服务器通信时，是否启动TLS链接(安全链接)
+# # 发送邮件设置
+# # https://docs.djangoproject.com/en/2.0/ref/settings/#email
+# # https://docs.djangoproject.com/en/2.0/topics/email/
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # 默认使用的邮箱配置
+# EMAIL_HOST = 'smtp.qq.com'   # qq邮箱是通过这个域名发送
+# EMAIL_PORT = 25    # 发送邮箱端口
+# EMAIL_HOST_USER = '2972352405@qq.com'   # 邮箱地址
+# EMAIL_HOST_PASSWORD = 'aaqjhlfhackuddch'  # 授权码
+# EMAIL_SUBJECT_PREFIX = '[李小龙的博客] '
+# EMAIL_USE_TLS = True  # 与SMTP服务器通信时，是否启动TLS链接(安全链接)

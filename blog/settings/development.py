@@ -39,12 +39,17 @@ DATABASES = {
         'NAME': 'mysite_db',
         'USER': 'lxl',
         'PASSWORD': 'lxl123456',
-        'HOST': 'localhost',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
     }}
 
 
-
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 # 发送邮件设置
 # https://docs.djangoproject.com/en/2.0/ref/settings/#email
