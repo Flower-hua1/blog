@@ -22,8 +22,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 # SECURITY WARNING: keep the secret key used in production secret!
 # 数据传输时加密解密的秘钥
 
-# SECRET_KEY = '8gkph6_vl!-zv$@yhqr5^=#oq8kn!64^ifj4#(47ve#(3n1p(c'
-SECRET_KEY = os.environ["SECRET_KEY"]
+SECRET_KEY = '8gkph6_vl!-zv$@yhqr5^=#oq8kn!64^ifj4#(47ve#(3n1p(c'
+# SECRET_KEY = os.environ["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
