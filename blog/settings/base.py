@@ -31,6 +31,8 @@ INSTALLED_APPS = [
     'comment',
     'likes',
     'user',
+    'notifications',
+    'my_notifications',
 
 
 
@@ -192,6 +194,17 @@ CACHES = {
 }
 
 
+# QQ登录设置
+QQ_APP_ID = 1
+QQ_APP_KEY = 2
+QQ_REDIRECT_URL = 'http://zqyhdm.com/user/login_by_qq'
+QQ_STATE = 'lxdblog'
+
+
+# notifications_hq设置
+DJANGO_NOTIFICATIONS_CONFIG = {
+    'USE_JSONFIELD': True
+}
 # # 发送邮件设置
 # # https://docs.djangoproject.com/en/2.0/ref/settings/#email
 # # https://docs.djangoproject.com/en/2.0/topics/email/

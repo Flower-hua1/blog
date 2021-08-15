@@ -9,10 +9,14 @@ from django.utils import timezone
 
 
 class ReadNum(models.Model):
-    read_num = models.IntegerField(default=0)
+    read_num = models.IntegerField(default=0, verbose_name="阅读数量")
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
+
+    class Meta:
+        verbose_name = '阅读数量'
+        verbose_name_plural = verbose_name
 
 class ReadNumExpandMethod():
     def get_read_num(self):
@@ -31,3 +35,7 @@ class ReadDetail(models.Model):
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
+
+    class Meta:
+        verbose_name = '阅读记录'
+        verbose_name_plural = verbose_name

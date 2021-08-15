@@ -33,6 +33,10 @@
                     </form>
                 </div>
             </div>
+                <a href="#">
+                    <img src="{% static 'qq.png' %}">
+                    使用QQ账号登录
+                </a>
             {% else %}
                 已登录,跳转到首页
                 <a class='btn btn-primary' href="{% url "login" %}?from={{ request.get_full_path }}">登录</a>{#询问当前链接并且返回给后端#}

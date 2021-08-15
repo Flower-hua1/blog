@@ -42,7 +42,7 @@ def read_statistics_once_read(request, obj):
     # return key
 """
 
-def get_seven_days_read_date(content_type):
+def get_seven_days_read_data(content_type):
     today = timezone.now().date()
     dates = []
     read_nums = []

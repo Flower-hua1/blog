@@ -1,7 +1,9 @@
-"""blog URL Configuration
+
+
+"""mysite URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/2.1/topics/http/urls/
+    https://docs.djangoproject.com/en/2.0/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -14,25 +16,25 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
-# from blogs import views
 
 urlpatterns = [
     path("", views.home, name="home"),
     path('admin/', admin.site.urls),
     path('ckeditor', include('ckeditor_uploader.urls')),    # 富文本编辑框
 
-
     # 这里是将url分别放到各自的文件夹里的urls.py里  所以这里要将各文件夹里的urls.py引用
     path('blog/', include("blogs.urls")),
     path('likes/', include('likes.urls')),
     path('comment/', include("comment.urls")),
     path('user/', include('user.urls')),
-
-
+    path('notifications/', include('notifications.urls', namespace='notifications')),
+    path('my_notifications/', include('my_notifications.urls')),
+    path('search/', views.search,name='search'),
 ]
+
 
 urlpatterns += static('/media/', document_root=settings.MEDIA_ROOT)  # 导入路径media下的文件都可以访问  指向settings里面设置的路径

@@ -18,6 +18,9 @@ class LikeCount(models.Model):
 
     # 创建记录点赞数量的字段
     liked_num = models.IntegerField(default=0)
+    class Meta:
+        verbose_name = '点赞统计'
+        verbose_name_plural = verbose_name
 
 class LikeRecord(models.Model):
     """
@@ -32,3 +35,7 @@ class LikeRecord(models.Model):
     # 被点赞的用户与点赞时间
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     liked_time = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = '点赞记录'
+        verbose_name_plural = verbose_name

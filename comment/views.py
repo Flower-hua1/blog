@@ -1,5 +1,6 @@
 from django.urls import reverse
 from django.http import JsonResponse
+
 from .models import Comment
 from django.contrib.contenttypes.models import ContentType
 from comment.forms import CommentForm
@@ -11,38 +12,6 @@ from comment.forms import CommentForm
 #
 def update_comment(request):
 
-    """
-    :param request:
-    :return:
-
-    referer = request.META.get("HTTP_REFERER",
-                               reverse('home'))  # 获取当前的网址用于重定向,如果获取不到就直接到首页   #reverse("home")将home解析成一个可用的网址
-    # 数据检查
-    if not request.user.is_authenticated:   # 如果没有登录
-        return render(request, "error.html", {"message": "用户未登录", "redirect_to": referer})  # 跳转到错误页面
-    text = request.POST.get("text", '').strip()   # 获取评论  剔除前后空格
-    if text == "":
-        return render(request, "error.html", {"message": "评论内容为空", "redirect_to": referer})  # 跳转到错误页面
-
-
-    try:
-        content_type = request.POST.get("content_type", '')    # 获取类型(django,随笔,感悟)
-        object_id = int(request.POST.get("object_id", ''))      # 获取博客的ID
-        model_class = ContentType.objects.\
-            get(model=content_type).model_class()  # 得到具体博客的类型 model_class(得到具体的模型对象) 这里做的评论方法是  可以对任何类的对象进行评论
-        model_obj = model_class.objects.get(pk=object_id)            # 这里的model_class相当于我们找到的Blog对象  (猜测这一句话是找到了具体的博客)
-        # print("********", model_obj, "********")
-    except:
-        return render(request, "error.html", {"message": "评论对象不存在", "redirect_to": referer})  # 跳转到错误页面
-    # 检查通过保存数据
-    comment = Comment()    # 实例化评论函数
-    comment.user = request.user    # 将取到的user返回
-    comment.text = text      # 将取到的text返回
-    comment.content_object = model_obj
-    comment.save()           # 保存
-    return redirect(referer)
-
-    """
     referer = request.META.get("HTTP_REFERER",
                                reverse('home'))  # 获取当前的网址用于重定向,如果获取不到就直接到首页   #reverse("home")将home解析成一个可用的网址
     comment_form = CommentForm(request.POST, user=request.user)
@@ -61,8 +30,11 @@ def update_comment(request):
             comment.reply_to = parent.user  # 上一级对应的数据(被回复的)
         comment.save()
 
-        # 发送邮件通知
-        comment.send_email()
+
+
+
+        # # 发送邮件通知
+        # comment.send_email()
 
         # 将前端评论数据打包成json数据(与字典类型数据相识)  返回给前端ajax处理
         data['status'] = "SUCCESS"  # 这里只是个状态

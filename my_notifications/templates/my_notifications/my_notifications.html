@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+
+
+{% block title %}
+    我的网站|通知
+{% endblock %}
+
+{% block header_extends %}
+    <link rel= "stylesheet" href="{% static "my_notifications/my_notifications.css" %}">
+{% endblock %}
+
+{% block nav_bolg_active%}active{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-mod-10 col-mod-offset-1">
+                <a class='btn btn-primary' href="{% url 'notifications:mark_all_as_read' %}?next={% url 'my_notifications' %}
+                ">全部标记为已读</a>
+                <a class='btn btn-danger' href="{% url 'delete_my_read_notifications' %}">删除已读消息</a>
+                <ul class="notification">
+                    {% for notifications in request.user.notifications.all %}
+                                    {#判断是否已读,未读是高亮,已读是灰色#}
+                    <li class="{% if not notifications.unread %}read{% endif %}">[{{ notifications.timesince }}之前]<a
+                            href="{% url 'my_notification' notifications.pk %}">{{ notifications.verb}}</a></li>
+                    {% empty %}
+                        <li>暂无消息</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

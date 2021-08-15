@@ -1,9 +1,13 @@
 import string
 import random
 import time
+import json
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
+from urllib.request import urlopen
+from urllib.parse import urlencode, parse_qs
 from django.core.mail import send_mail
+from django.conf import settings
 from django.contrib import auth
 from django.urls import reverse
 from django.contrib.auth.models import User
@@ -12,6 +16,55 @@ from .models import Profile
 # Create your views here.
 
 
+# def login_by_qq(request):
+#     code = request.GET['code']  # 前端的返回数据    (code)
+#     state = request.GET['state']     # 返回的是在登录里自己填写的(lxdblog)
+#
+#     if state != settings.QQ_STATE:    # 判断是不是一致
+#         raise Exception("state error")
+#
+#     # 获取Access_token
+#     params = {
+#         'grant_type': 'authorization_code',
+#         'client_id': settings.QQ_APP_ID,
+#         'client_secret': settings.QQ_APP_KEY,
+#         'code': code,
+#         'redirect_uri': settings.QQ_REDIRECT_URL,   # qq重定向URL
+#
+#     }
+#     response = urlopen('https://graph.qq.com/oauth2.0/token?' + urlencode(params))
+#     data = response.read().decode('utf8')  #将返回的的数据转换成utf-8的格式
+#     access_token = parse_qs(data)['access_token'][0]   # 获取access_token   提取token
+
+
+    # import pdb    # 断点
+    # pdb.set_trace()
+
+    # # 获取openid
+    # response = urlopen('https://graph.qq.com/oauth2.0/me?access_token=' + access_token)      # 向网址发送请求
+    # data = response.read().decode('utf8')   #将返回的的数据转换成utf-8的格式
+    # openid = json.loads(data[10:-4])['openid']
+# 判断openid是否有关联的用户
+#     if OAuthRelationship.objects.filter(openid=openid, oauth_type=0).exists():
+#         relationship = OAuthRelationship.objects.get(openid=openid, oauth_type=0)
+#         auth.login(request, relationship.user)
+#         return redirect(reverse('home'))
+#     else:
+#         request.session['openid'] = openid
+#
+#         # 获取QQ用户信息
+#         params = {
+#             'access_token': access_token,
+#             'oauth_consumer_key': settings.QQ_APP_ID,
+#             'openid': openid,
+#         }
+#         response = urlopen('https://graph.qq.com/user/get_user_info?' + urlencode(params))
+#         data = json.loads(response.read().decode('utf8'))
+#         params = {
+#             'nickname': data['nickname'],
+#             'avatar': data['figureurl_qq_1'],
+#         }
+#         return redirect(reverse('bind_qq') + '?' + urlencode(params))
 
 
 def login(request):
